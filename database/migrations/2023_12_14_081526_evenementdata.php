@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create("Evenementdata", function (Blueprint $table) {
             $table->Increments("EvenementdataID");
             $table->unsignedInteger("EvenementID");
-            $table->foreign('EvenementID')->references('id')->on('Evenement');
+            $table->foreign('EvenementID')->references('id')->on('evenement');
             $table->integer("Instroom");
             $table->integer("Uitstroom");
             $table->float("temperature");

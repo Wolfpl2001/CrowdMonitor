@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->increments('UserID');
-            $table->unsignedInteger('LoginID');
-            $table->foreign('LoginID')->references('LoginID')->on('Login')->onDelete('cascade');
-            $table->string('BedrijfsNaam');
-            $table->string('TelefoonNummer');
-            $table->integer('Usertype');
+        Schema::create('Evenementnow', function (Blueprint $table) {
+            $table->increments('Id');  
+            $table->unsignedInteger('EvenementId');  
+            $table->foreign('EvenementId')->references('id')->on('evenement')->onDelete('cascade'); 
+            $table->integer('Bezoekers'); 
             $table->timestamps();
         });
+        
     }
 
     /**

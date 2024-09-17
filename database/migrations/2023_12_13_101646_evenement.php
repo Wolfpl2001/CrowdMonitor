@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create("evenement", function (Blueprint $table) {
-            $table->bigIncrements("id");
+            $table->Increments("id");
             $table->integer("MaxBezoekers");
             $table->dateTime("Start");
             $table->dateTime("Eind");
-            $table->unsignedBigInteger("AdresID");
+            $table->unsignedInteger("AdresID");
             $table->foreign('AdresID')->references('AdresID')->on('Adres');
             $table->string("EventNaam");
             $table->string('Stad');
-            $table->unsignedBigInteger("UserID");
+            $table->unsignedInteger("UserID");
             $table->foreign('UserID')->references('UserID')->on('User');
             $table->timestamps();
         });

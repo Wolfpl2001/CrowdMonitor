@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('events', EvenementController::class);
-Route::get('/events', [EvenementController::class, 'event'])->name('events.index');
+Route::get('/', [EvenementController::class, 'event'])->name('events.index');
 Route::post('/events', [EvenementController::class, 'store'])->name('events.store');
 Route::delete('/events/{id}', [EvenementController::class, 'destroy'])->name('events.destroy');
 
@@ -40,7 +40,7 @@ Route::get('/{id}/{city}', function () {
     ]);
 })->name('weather.index');
 
-Route::get('/', [EvenementController::class, 'index'])->name('live');
+Route::get('/get', [EvenementController::class, 'index'])->name('live');
 Route::post('/', [EvenementController::class, 'index'])->name('live');
 Route::post('/', [EvenementController::class, 'GetEventData'])->name('loadEvent');
 Route::post('/', function () {

@@ -1,0 +1,229 @@
+.topnav {
+    grid-template-areas: "menu menu . dropdown";
+    overflow: hidden;
+    background-color: #EEF1F6;
+    grid-area: navbar;
+    display: grid;
+    grid-template-columns: 22% 22% 23.5% 32.5%;
+    align-items: center;
+    width: 100%;
+}
+
+.pagebtn {
+    background: none;
+    border: none;
+}
+
+.topnav a {
+    padding: 14px 16px;
+    display: block;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 21px;
+    font-weight: 600;
+    text-align: left;
+    color: #000000;
+}
+
+.topnav a.btn:hover {
+    background-color: #ddd;
+    color: #212121;
+}
+
+.pagemenu {
+    grid-area: menu;
+    display: grid;
+    grid-template-areas: "account event";
+}
+
+.pagemenu-content {
+    display: none;
+}
+
+img.mobile {
+    display: none;
+}
+
+.topnav a.account {
+    background-color: #FFFFFF;
+    border-radius: 1vw 0vw 0vw 1vw;
+    text-align: center;
+    grid-area: account;
+}
+
+.topnav a.event {
+    background-color: #FFFFFF;
+    border-radius: 0vw 1vw 1vw 0vw;
+    grid-area: event;
+    text-align: center;
+}
+
+a.account:hover {
+    color: rgb(112, 112, 112);
+}
+
+a.event:hover {
+    color: rgb(112, 112, 112);
+}
+
+.dropmenu {
+    grid-area: dropdown;
+    display: grid;
+    background-color: #FFFFFF;
+    grid-column: 4;
+    box-shadow: -0.2vw 0.125vw 0.75vw 0.375vw #02515C14;
+    width: 16.5vw;
+    border-radius: 16px;
+    height: 40px;
+    place-content: center;
+}
+
+.kiesevent {
+    display: grid;
+    grid-template-areas: "drop txt";
+    justify-content: end;
+    align-items: center;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.kiesevent h2 {
+    grid-area: txt;
+    font-size: 1.25vw;
+    padding-right: 1vw;
+}
+
+.dropdown {
+    align-self: center;
+    width: 44.8px;
+    grid-area: drop;
+    padding: 1vw 1vw 1vw 1vw;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    margin: 40px 0px 0px 0px;
+    background-color: #f1f1f1;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 16.5vw;
+}
+
+.dropdown-content button {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    display: grid;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.dropdown-content button:hover {
+    color: rgb(112, 112, 112);
+}
+
+.show {
+    display: grid;
+    margin-left: 15px;
+    width: 14.5vw;
+}
+
+.topnav .icon {
+    display: none;
+}
+
+/* Responsive */
+@media screen and (max-width: 1425px) {
+    .kiesevent {
+        grid-template-columns: 30% 70%;
+    }
+}
+
+@media screen and (max-width: 1051px) {
+    .kiesevent h2 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .dropmenu {
+        width: 85%;
+        margin-left: 2.5vw;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+
+    .topnav a.icon {
+        display: none;
+    }
+
+    .topnav.responsive {
+        position: relative;
+    }
+
+    .topnav.responsive .icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    a.account {
+        display: none;
+    }
+
+    img.mobile {
+        display: grid;
+        width: 8vw;
+        height: 8vw;
+    }
+
+    .pagemenu-content {
+        margin: 2.5vw 0vw 0vw 1vw;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        z-index: 1;
+        width: 14.5vw;
+    }
+
+    .topnav {
+        grid-template-areas: "menu . dropdown";
+        grid-template-columns: repeat(1, 1fr);
+        place-items: center;
+        background: none;
+    }
+
+    .pagemenu {
+        width: 85%;
+        grid-template-columns: repeat(1, 1fr);
+        justify-items: center;
+        background: #FFFFFF;
+        border-radius: 1vw;
+    }
+
+    .dropdown {
+        width: 6.5vw;
+    }
+}
+
+@media screen and (max-width: 345px) {
+    .dropmenu {
+        display: none;
+    }
+}

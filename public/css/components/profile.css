@@ -1,0 +1,46 @@
+.profile {
+    display: grid;
+    grid-area: profile;
+    grid-template-columns: 40% 60%;
+    grid-template-areas: "logo txt";
+    align-content: center;
+}
+
+.profilelogo {
+    display: grid;
+    grid-area: logo;
+    align-items: center;
+}
+
+.profilelogo img {
+    width: 64px;
+    height: 64px;
+    background: #000000;
+    border-radius: 50%;
+}
+
+.profiletxt {
+    display: grid;
+    grid-area: txt;
+    font-family: sans-serif;
+    font-size: 1.7vw;
+    font-weight: 600;
+    line-height: 49px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1346px) {
+    .profiletxt {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 601px) {
+    .profilelogo img {
+        width: 10.5vw;
+        height: 10.5vw;
+    }
+}

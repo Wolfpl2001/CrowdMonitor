@@ -1,0 +1,68 @@
+.uitstroom {
+    display: grid;
+    grid-area: uitstroom;
+    grid-template-rows: 30% 35% auto;
+    grid-template-areas:
+        "uitstroom"
+        "aantal";
+    place-items: center;
+    background: #FFFFFF;
+    box-shadow: -3px 2px 12px 6px #02515C14;
+    border-radius: 16px;
+    margin-top: 3vh;
+    margin-right: 1vw;
+    height: 80%;
+}
+
+.uitstroom h2 {
+    grid-area: uitstroom;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.uitstroom h1 {
+    grid-area: aantal;
+    font-size: 45px;
+    font-weight: 700;
+    text-align: center;
+    color: #E03076;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1424px) {
+    .uitstroom {
+        width: 94.5%;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .uitstroom h2 {
+        font-size: 3.25vw;
+    }
+
+    .uitstroom h1 {
+        font-size: 5vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .uitstroom h2 {
+        font-size: 23px;
+    }
+
+    .uitstroom h1 {
+        font-size: 35px;
+    }
+}
+
+@media screen and (max-width: 335px) {
+    .uitstroom h2 {
+        font-size: 7vw;
+    }
+
+    .uitstroom h1 {
+        font-size: 10.5vw;
+    }
+}

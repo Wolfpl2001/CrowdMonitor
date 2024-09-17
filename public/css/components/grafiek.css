@@ -1,0 +1,8 @@
+.grafiekcontainer {
+    display: grid;
+    margin-left: 4vw;
+    margin-right: 3vw;
+}
+#graph-container {
+    display: grid;
+}

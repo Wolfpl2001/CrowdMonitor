@@ -1,0 +1,91 @@
+@import url(../app.css);
+@import url(../components/navbar.css);
+@import url(../components/profile.css);
+@import url(../components/actuelebezoekers.css);
+@import url(../components/bezoekersaantal.css);
+@import url(../components/trend.css);
+@import url(../components/instroom.css);
+@import url(../components/uitstroom.css);
+@import url(../components/weather.css);
+@import url(../components/grafiek.css);
+
+html,
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #EEF1F6;
+  height: 100%;
+  overflow: hidden;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  height: 100%;
+  grid-template-areas:
+    "head head head head head side side"
+    "live live live live live side side"
+    "live live live live live side side"
+    "live live live live live side side"
+    "graf graf graf graf graf side side"
+    "graf graf graf graf graf side side"
+    "graf graf graf graf graf side side";
+}
+
+.header {
+  grid-area: head;
+  display: grid;
+  width: 100%;
+  margin-left: 4vw;
+  margin-right: 4vw;
+  grid-template-columns: 16.5% 73.5%;
+  grid-template-rows: repeat(1, 1fr);
+  grid-template-areas: "profile navbar";
+}
+
+.livedata {
+  grid-area: live;
+  display: grid;
+  width: 100%;
+  margin-left: 4vw;
+  margin-right: 4vw;
+  margin-top: 0vw;
+  grid-template-columns: 22.5% 22.5% 22.5% 22.5%;
+  grid-template-areas:
+    "actueel huidig huidig huidig"
+    "actueel instroom uitstroom trend";
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.grafiek {
+  grid-area: graf;
+}
+
+.sidebar {
+  grid-area: side;
+  background: white;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1425px) {
+  html,
+  body {
+    overflow: auto;
+  }
+  .livedata {
+    margin-right: 0vw;
+    grid-template-columns: 100%;
+    width: auto;
+    grid-template-areas:
+      "actueel"
+      "huidig"
+      "instroom"
+      "uitstroom"
+      "trend";
+    grid-template-rows: repeat(5, 1fr);
+  }
+}

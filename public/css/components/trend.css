@@ -1,0 +1,74 @@
+.trend {
+    display: grid;
+    grid-area: trend;
+    grid-template-rows: 30% 10% auto;
+    place-items: center;
+    background: #FFFFFF;
+    box-shadow: -3px 2px 12px 6px #02515C14;
+    border-radius: 16px;
+    margin-top: 3vh;
+    margin-right: 1vw;
+    margin-left: 1vw;
+    height: 80%;
+}
+
+.trend h2 {
+    font-size: 30px;
+    font-weight: 600;
+    color: #000000;
+    text-align: center;
+}
+
+.trend h3 {
+    font-size: 23px;
+    font-weight: 600;
+    text-align: center;
+    color: #04A0B5;
+}
+
+.trend img {
+    width: 114px;
+    height: 68px;
+    top: 144px;
+    left: 60px;
+    margin: 0;
+}
+
+/* Responsive */
+
+@media screen and (max-width: 1424px) {
+    .trend {
+        width: 94.5%;
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .trend h3 {
+        font-size: 2.5vw;
+    }
+
+    .trend h2 {
+        font-size: 3.5vw;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .trend h3 {
+        font-size: 17px;
+    }
+
+    .trend h2 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 335px) {
+    .trend h3 {
+        font-size: 5vw;
+    }
+
+    .trend h2 {
+        font-size: 7.5vw;
+    }
+}

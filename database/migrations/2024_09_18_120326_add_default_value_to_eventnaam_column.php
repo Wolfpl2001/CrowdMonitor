@@ -9,15 +9,15 @@ return new class extends Migration
     // In the migration file:
     public function up()
     {
-        Schema::table('evenements', function (Blueprint $table) {
-            $table->string('EventNaam')->default('Default Event')->change();
+        Schema::table('events', function (Blueprint $table) {
+            $table->string('event_name')->default('Default Event')->change();
         });
     }
 
     public function down()
     {
-        Schema::table('evenements', function (Blueprint $table) {
-            $table->string('EventNaam')->default(null)->change();
+        Schema::table('events', function (Blueprint $table) {
+            $table->string('event_name')->default(null)->change();
         });
     }
 };

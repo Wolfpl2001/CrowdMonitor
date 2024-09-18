@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->increments('UserID');
-            $table->unsignedInteger('LoginID');
-            $table->foreign('LoginID')->references('LoginID')->on('Login')->onDelete('cascade');
+            $table->string("Username");
+            $table->string("Password");
             $table->string('BedrijfsNaam');
             $table->string('TelefoonNummer');
             $table->integer('Usertype');
+            $table->foreignIdFor(Evenement::class);
             $table->timestamps();
         });
     }

@@ -34,13 +34,15 @@ class EvenementController extends Controller
     public function store(Request $request)
     {
         $data = $request->toArray();
-
+        echo '<PRE>';
+        print_r($data);
+        echo '</PRE>';
         $event = Evenement::create([
             'MaxBezoekers' => $data['maxbezoekers'],
             'Start' => $data['start'],
             'Eind' => $data['eind'],
             'AdresID' => '1',
-            'EventNaam' => $data['eventnaam'],
+            'EventNaam' => $data['eventnaam'] | "",
             'Stad' => $data['stad'],
             'UserID' => '1',
         ]);

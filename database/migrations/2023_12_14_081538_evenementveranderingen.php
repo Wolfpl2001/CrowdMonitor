@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Evenement;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,9 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create("Evenementveranderingen", function (Blueprint $table) {
-            $table->Increments("Id");
-            $table->unsignedInteger("EvenementID");
-            $table->foreign('EvenementID')->references('id')->on('Evenement');
+            $table->id();
+            $table->foreignIdFor(Evenement::class);
+            $table->foreign('evenement_id')->references('id')->on('evenement');
             $table->longText("Notitie");
             $table->time("Tijd");
             $table->timestamps();

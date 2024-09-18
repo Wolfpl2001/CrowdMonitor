@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,16 +13,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create("evenement", function (Blueprint $table) {
-            $table->Increments("id");
+            $table->id();
+            $table->string("EventNaam");
             $table->integer("MaxBezoekers");
             $table->dateTime("Start");
             $table->dateTime("Eind");
-            $table->unsignedInteger("AdresID");
-            $table->foreign('AdresID')->references('AdresID')->on('Adres');
-            $table->string("EventNaam");
             $table->string('Stad');
-            $table->unsignedInteger("UserID");
-            $table->foreign('UserID')->references('UserID')->on('User');
+            $table->string("Straat");
+            $table->integer("Huisnummer");
+            $table->string("Postcode");
+            $table->foreignIdFor(User::class);
+            $table->foreign('user_id')->references('id')->on('user');
             $table->timestamps();
         });
     }

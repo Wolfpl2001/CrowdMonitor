@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("evenement", function (Blueprint $table) {
+        Schema::create("evenements", function (Blueprint $table) {
             $table->id();
             $table->string("EventNaam");
             $table->integer("MaxBezoekers");
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer("Huisnummer");
             $table->string("Postcode");
             $table->foreignIdFor(User::class);
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

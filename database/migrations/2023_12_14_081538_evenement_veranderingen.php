@@ -12,10 +12,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("Evenement_veranderingen", function (Blueprint $table) {
+        Schema::create("evenement_veranderingen", function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Evenement::class);
-            $table->foreign('evenement_id')->references('id')->on('evenement');
+            $table->foreign('evenement_id')->references('id')->on('evenements');
             $table->longText("Notitie");
             $table->time("Tijd");
             $table->timestamps();

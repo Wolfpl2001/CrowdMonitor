@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("Evenementdata", function (Blueprint $table) {
+        Schema::create("Camera", function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Evenement::class);
             $table->foreign('evenement_id')->references('id')->on('evenement');

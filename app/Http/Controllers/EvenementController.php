@@ -5,14 +5,14 @@ namespace App\Http\Controllers;
 use App\Models\evenementnow;
 use App\Models\Evenement;
 use Illuminate\Http\Request;
-use App\Models\EvenementData;
+use App\Models\Camera;
 
 class EvenementController extends Controller
 {
     public function index()
     {
         $selectedevent = Evenement::find(1)->toArray(); // bug: get first event a user may monitor
-        $eventdata = EvenementData::orderBy('Tijd', 'DESC')->first();
+        $eventdata = Camera::orderBy('Tijd', 'DESC')->first();
         $allevents = Evenement::all()->toArray();
         $eventarray =  ["eventData" => $eventdata, "gekozenEvenement" => $selectedevent, "evenementen" => $allevents];
         return $eventarray;
@@ -27,7 +27,7 @@ class EvenementController extends Controller
         $eventsnow = evenementnow::all();
         $events = EvenementController::index();
         $postData = $request->all();
-        $event = EvenementData::where('EvenementID', $postData['id'])->first()->toArray();
+        $event = Camera::where('EvenementID', $postData['id'])->first()->toArray();
         $eventarray = ["eventData" => $event, "gekozenEvenement" => $events['gekozenEvenement'], "evenementen" => $events['evenementen']];
         return $eventarray;
     }
@@ -49,7 +49,7 @@ class EvenementController extends Controller
         ->where('Start', $data['start'])
         ->first()
         ->toArray();
-        $eventdata = EvenementData::create([
+        $eventdata = Camera::create([
             'EvenementID' => $selectedevent['id'],
             'Instroom' => $data['instroom'],
             'Uitstroom' => $data['uitstroom'],
@@ -85,7 +85,7 @@ class EvenementController extends Controller
         }
 
         // Get event data for the selected event
-        $eventData = EvenementData::where('EvenementID', $selectedEvent->id)->first();
+        $eventData = Camera::where('EvenementID', $selectedEvent->id)->first();
 
         if (!$eventData) {
             // Handle the case where event data is not found

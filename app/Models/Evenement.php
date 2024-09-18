@@ -6,22 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Evenement extends Model
 {
-    protected $table = "evenement";
-
-    protected $fillable =[
-        'MaxBezoekers', 'Start', 'Eind', 'AdresID', 'EventNaam', 'Stad', 'UserID',
-    ];
-
-    public function adresRelation() {
-        return $this->belongsTo(Adres::class);
-    }
-    public function userRelation() {
+    public function user() {
         return $this->belongsTo(User::class);
     }
-    public function eventdataRelation() {
-        return $this->hasOne(EvenementData::class);
+    public function camera() {
+        return $this->hasOne(Camera::class);
     }
-    public function eventveranderingRelation() {
+    public function evenementVeranderingen() {
         return $this->hasMany(EvenementVeranderingen::class);
     }
 }

@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class User extends Model
 {
-    protected $table = 'user';
-
-    public function evenementRelation() {
+    public function evenement() {
         return $this->hasMany(Evenement::class);
     }
 }

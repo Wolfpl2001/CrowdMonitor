@@ -3,23 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\evenementnow;
-use App\Models\Evenement;
+use App\Models\Event;
 use Illuminate\Http\Request;
-use App\Models\Camera;
+use App\Models\Cam;
 
 class EvenementController extends Controller
 {
     public function index()
     {
-        $selectedevent = Evenement::find(1)->toArray(); // bug: get first event a user may monitor
-        $eventdata = Camera::orderBy('Tijd', 'DESC')->first();
-        $allevents = Evenement::all()->toArray();
+        $selectedevent = Event::find(1)->toArray(); // bug: get first event a user may monitor
+        $eventdata = Cam::orderBy('Tijd', 'DESC')->first();
+        $allevents = Event::all()->toArray();
         $eventarray =  ["eventData" => $eventdata, "gekozenEvenement" => $selectedevent, "evenementen" => $allevents];
         return $eventarray;
     }
     public function event()
     {
-        $events = Evenement::all();
+        $events = Event::all();
         return view("events", compact('events'));
     }
     public function GetEventData(Request $request)
@@ -27,7 +27,7 @@ class EvenementController extends Controller
         $eventsnow = evenementnow::all();
         $events = EvenementController::index();
         $postData = $request->all();
-        $event = Camera::where('EvenementID', $postData['id'])->first()->toArray();
+        $event = Cam::where('EvenementID', $postData['id'])->first()->toArray();
         $eventarray = ["eventData" => $event, "gekozenEvenement" => $events['gekozenEvenement'], "evenementen" => $events['evenementen']];
         return $eventarray;
     }
@@ -37,7 +37,8 @@ class EvenementController extends Controller
         echo '<PRE>';
         print_r($data);
         echo '</PRE>';
-        $event = Evenement::create([
+
+        $event = Event::create([
             'MaxBezoekers' => $data['maxbezoekers'],
             'Start' => $data['start'],
             'Eind' => $data['eind'],
@@ -46,12 +47,12 @@ class EvenementController extends Controller
             'Stad' => $data['stad'],
             'UserID' => '1',
         ]);
-        $selectedevent = Evenement::where('EventNaam', $data['eventnaam'])
+        $selectedevent = Event::where('EventNaam', $data['eventnaam'])
         ->where('Stad', $data['stad'])
         ->where('Start', $data['start'])
         ->first()
         ->toArray();
-        $eventdata = Camera::create([
+        $eventdata = Cam::create([
             'EvenementID' => $selectedevent['id'],
             'Instroom' => $data['instroom'],
             'Uitstroom' => $data['uitstroom'],
@@ -64,7 +65,7 @@ class EvenementController extends Controller
         return redirect()->route('events.index')->with('success', 'Event created successfully.');
     }
 
-    public function destroy(Evenement $event)
+    public function destroy(Event $event)
     {
         $event->delete();
 
@@ -79,7 +80,7 @@ class EvenementController extends Controller
     public function getEventDataById($id)
     {
         // Get the selected event
-        $selectedEvent = Evenement::find($id ?: 1);
+        $selectedEvent = Event::find($id ?: 1);
 
         if (!$selectedEvent) {
             // Handle the case where the event is not found
@@ -87,14 +88,14 @@ class EvenementController extends Controller
         }
 
         // Get event data for the selected event
-        $eventData = Camera::where('EvenementID', $selectedEvent->id)->first();
+        $eventData = Cam::where('EvenementID', $selectedEvent->id)->first();
 
         if (!$eventData) {
             // Handle the case where event data is not found
             abort(404, 'Event data not found');
         }
 
-        $allevents = Evenement::all();
+        $allevents = Event::all();
 
         return [
             "eventData" => $eventData->toArray(),

@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class User extends Model
+class EventChangelog extends Model
 {
     public function event() {
-        return $this->hasMany(Event::class);
+        return $this->belongsTo(Event::class);
     }
 }

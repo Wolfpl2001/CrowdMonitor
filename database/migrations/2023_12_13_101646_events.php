@@ -12,16 +12,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create("evenements", function (Blueprint $table) {
+        Schema::create("events", function (Blueprint $table) {
             $table->id();
-            $table->string("EventNaam");
-            $table->integer("MaxBezoekers");
-            $table->dateTime("Start");
-            $table->dateTime("Eind");
-            $table->string('Stad');
-            $table->string("Straat");
-            $table->integer("Huisnummer");
-            $table->string("Postcode");
+            $table->string("event_name");
+            $table->integer("max_visitors");
+            $table->dateTime("start");
+            $table->dateTime("end");
+            $table->string("street");
+            $table->integer("house_number");
+            $table->string("postal_code");
+            $table->string('city');
             $table->foreignIdFor(User::class);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

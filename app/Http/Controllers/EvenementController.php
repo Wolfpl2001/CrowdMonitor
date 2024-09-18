@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\evenementnow;
 use App\Models\Evenement;
+use Illuminate\Http\Request;
 use App\Models\EvenementData;
 
 class EvenementController extends Controller
@@ -23,6 +24,7 @@ class EvenementController extends Controller
     }
     public function GetEventData(Request $request)
     {
+        $eventsnow = evenementnow::all();
         $events = EvenementController::index();
         $postData = $request->all();
         $event = EvenementData::where('EvenementID', $postData['id'])->first()->toArray();

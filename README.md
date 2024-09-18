@@ -9,4 +9,4 @@ php artisan migrate:fresh --seed -> database maken en seeden
 
 php artisan serve -> development server runnen
 npm run dev -> hot reload Vite
-npm run build -> enkele frontend
+npm run build -> enkel de frontend

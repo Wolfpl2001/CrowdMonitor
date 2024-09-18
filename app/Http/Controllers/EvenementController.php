@@ -39,27 +39,26 @@ class EvenementController extends Controller
         echo '</PRE>';
 
         $event = Event::create([
-            'MaxBezoekers' => $data['maxbezoekers'],
-            'Start' => $data['start'],
-            'Eind' => $data['eind'],
-            'AdresID' => '1',
-            'EventNaam' => $data['eventnaam'] | "",
-            'Stad' => $data['stad'],
-            'UserID' => '1',
+            'max_visitors' => 1000, //$data['max_visitors'],
+            'start' => $data['start'],
+            'end' => $data['end'],            
+            'event_name' => $data['event_name'],
+            'city' => $data['city'],
+            'user_id' => '1',
         ]);
-        $selectedevent = Event::where('EventNaam', $data['eventnaam'])
-        ->where('Stad', $data['stad'])
-        ->where('Start', $data['start'])
+        $selectedevent = Event::where('event_name', $data['event_name'])
+        ->where('stad', $data['stad'])
+        ->where('start', $data['start'])
         ->first()
         ->toArray();
         $eventdata = Cam::create([
-            'EvenementID' => $selectedevent['id'],
-            'Instroom' => $data['instroom'],
-            'Uitstroom' => $data['uitstroom'],
+            'event_id' => $selectedevent['id'],
+            'inflow' => $data['inflow'],
+            'outflow' => $data['outflow'],
             'temperature' => $data['temperature'],
-            'Tijd' => now(),
+            'time' => now(),
             'weather_description' => $data['weather_description'],
-            'Weer' => $data['weer'],
+            'weather' => $data['weather'],
         ]);
 
         return redirect()->route('events.index')->with('success', 'Event created successfully.');

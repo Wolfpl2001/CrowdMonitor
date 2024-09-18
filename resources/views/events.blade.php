@@ -18,13 +18,13 @@
 
             @forelse ($events as $event)
             <div class="event-item">
-                <h3>{{ $event->EventNaam }}</h3>
-                <p>Start Date and Time: {{ $event->Start }}</p>
-                <p>End Date and Time: {{ $event->Eind }}</p>
-                <p>Max Visitors: {{ $event->MaxBezoekers }}</p>
-                <p>City: {{ $event->Stad }}</p>
+                <h3>{{ $event->event_name }}</h3>
+                <p>Start Date and Time: {{ $event->start }}</p>
+                <p>End Date and Time: {{ $event->end }}</p>
+                <p>Max Visitors: {{ $event->max_visitors }}</p>
+                <p>City: {{ $event->city }}</p>
 
-                <a href="{{ route('weather.index', ['id' => $event->id, 'city' => $event->Stad]) }}">View Weather</a>
+                <a href="{{ route('weather.index', ['id' => $event->id, 'city' => $event->city]) }}">View Weather</a>
 
                 <form method="POST" action="{{ route('events.destroy', ['id' => $event->id]) }}">
                     @csrf
@@ -43,23 +43,23 @@
             <form method="POST" action="{{ route('events.store') }}">
                 @csrf
 
-                <label for="eventnaam">Event Name:</label>
-                <input type="text" id="eventnaam" name="eventnaam" required>
+                <label for="event_name">Event Name:</label>
+                <input type="text" id="event_name" name="event_name" required>
 
                 <label for="start">Start Date and Time:</label>
                 <input type="datetime-local" id="start" name="start" required>
 
-                <label for="eind">End Date and Time:</label>
-                <input type="datetime-local" id="eind" name="eind" required>
+                <label for="end">End Date and Time:</label>
+                <input type="datetime-local" id="end" name="end" required>
 
-                <label for="maxbezoekers">Max Visitors:</label>
-                <input type="number" id="maxbezoekers" name="maxbezoekers" required>
+                <label for="max_visitors">Max Visitors:</label>
+                <input type="number" id="max_visitors" name="max_visitors" required>
 
-                <label for="instroom">Instroom:</label>
-                <input type="number" id="instroom" name="instroom" required>
+                <label for="inflow">Instroom:</label>
+                <input type="number" id="inflow" name="inflow" required>
 
-                <label for="uitstroom">Uitstroom:</label>
-                <input type="number" id="uitstroom" name="uitstroom" required>
+                <label for="outflow">Uitstroom:</label>
+                <input type="number" id="outflow" name="outflow" required>
 
                 <label for="temperature">Temperatuur:</label>
                 <input type="number" id="temperature" name="temperature" required>
@@ -67,11 +67,11 @@
                 <label for="weather_description">Weer Beschrijving:</label>
                 <input type="number" id="weather_description" name="weather_description" required>
 
-                <label for="weer">Weer:</label>
-                <input type="number" id="weer" name="weer" required>
+                <label for="wheather">Weer:</label>
+                <input type="number" id="wheather" name="weather" required>
 
-                <label for="stad">City:</label>
-                <input type="text" id="stad" name="stad" required>
+                <label for="city">City:</label>
+                <input type="text" id="city" name="city" required>
 
                 <button type="submit">Create Event</button>
             </form>

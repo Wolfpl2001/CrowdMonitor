@@ -39,27 +39,34 @@ class EvenementController extends Controller
         echo '</PRE>';
 
         $event = Event::create([
-            'max_visitors' => 1000, //$data['max_visitors'],
+            'max_visitors' => $data['max_visitors'],
             'start' => $data['start'],
-            'end' => $data['end'],            
+            'end' => $data['end'],      
+            'street' => "",
+            'house_number' => 1,
+            'postal_code' => "",
+            'country_code' => "NL",
+            'user_id' => 1,      
             'event_name' => $data['event_name'],
             'city' => $data['city'],
             'user_id' => '1',
         ]);
-        $selectedevent = Event::where('event_name', $data['event_name'])
-        ->where('stad', $data['stad'])
-        ->where('start', $data['start'])
-        ->first()
-        ->toArray();
-        $eventdata = Cam::create([
-            'event_id' => $selectedevent['id'],
-            'inflow' => $data['inflow'],
-            'outflow' => $data['outflow'],
-            'temperature' => $data['temperature'],
-            'time' => now(),
-            'weather_description' => $data['weather_description'],
-            'weather' => $data['weather'],
-        ]);
+        // TODO 20240918
+        // RayIT
+        // $selectedevent = Event::where('event_name', $data['event_name'])
+        // ->where('city', $data['city'])
+        // ->where('start', $data['start'])
+        // ->first()
+        // ->toArray();
+        // $eventdata = Cam::create([
+        //     'event_id' => $selectedevent['id'],
+        //     'inflow' => $data['inflow'],
+        //     'outflow' => $data['outflow'],
+        //     'temperature' => $data['temperature'],
+        //     'time' => now(),
+        //     'weather_description' => $data['weather_description'],
+        //     'weather' => $data['weather'],
+        // ]);
 
         return redirect()->route('events.index')->with('success', 'Event created successfully.');
     }

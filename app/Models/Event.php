@@ -7,16 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Event extends Model
 {
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'name',         // Example field
-        'date',         // Example field
-        'Maxvisitors', // Add this line for mass assignment
+        'name',
+        'max_visitors',
+        'start',
+        'end',
+        'street',
+        'house_number',
+        'postal_code',
+        'city',
+        'country_code',
+        'user_id',
+        'created_at',
+        'updated_at',
     ];
+
+
 
     public function user() {
         return $this->belongsTo(User::class);

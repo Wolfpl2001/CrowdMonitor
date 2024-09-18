@@ -12,14 +12,20 @@ class EventSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table("event")->insert([
+        DB::table("events")->insert([
             "id" => 1,
-            "name" => "HTML",
-            "logo" => "https://rapidapi.com/blog/wp-content/uploads/2018/06/logo-2582748_640.png",
-            "self_rating" => 5,
-            "experience" => 5,
-            "recency" => 5,
-            "interest" => 4
+            "event_name" => "X-perience Day",
+            "max_visitors" => 10001,
+            "start" => "2024-09-22 12:00:00",
+            "end" => "2024-09-25 23:59:59",
+            "street" => "Bredeweg",
+            "house_number" => 235,
+            "postal_code" => "6042GE",
+            "city" => "Roermond",
+            "country_code" => "NL",
+            "user_id" => 1,
+            "created_at" => now()->subMinutes(5),
+            "updated_at" => now()
         ]);
     }
 }

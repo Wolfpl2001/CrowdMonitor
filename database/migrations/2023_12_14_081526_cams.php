@@ -19,7 +19,6 @@ return new class extends Migration
             $table->integer("inflow");
             $table->integer("outflow");
             $table->float("temperature");
-            $table->string("weather_description");
             $table->integer("weather_code");
             $table->timestamps();
         });

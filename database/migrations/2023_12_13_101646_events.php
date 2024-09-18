@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer("house_number");
             $table->string("postal_code");
             $table->string('city');
+            $table->string('country_code');
             $table->foreignIdFor(User::class);
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use PHPUnit\Framework\Constraint\IsEmpty;
-use App\Models\Evenement;
+use App\Models\Event;
 
 
 class WeatherController extends Controller
@@ -14,7 +14,7 @@ class WeatherController extends Controller
     {
         $eventId = $request->id;
         $city = $request->city;
-        $selectedevent = Evenement::find($eventId)->toArray();
+        $selectedevent = Event::find($eventId)->toArray();
         if(Empty($city)){
             $city = $selectedevent['Stad'];
         }
@@ -22,7 +22,7 @@ class WeatherController extends Controller
         $apiKey = '98eabe9becb3d055061f7efaacb60661';
         $weatherResponse = Http::get("http://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$apiKey}");
         $weatherData = $weatherResponse->json();
-        
+
         if (isset($weatherData['main']['temp'])) {
             $temperatureCelsius = $this->convertKelvinToCelsius($weatherData['main']['temp']);
             $weatherarray = [

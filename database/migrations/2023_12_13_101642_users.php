@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->increments('UserID');
-            $table->unsignedInteger('LoginID');
-            $table->foreign('LoginID')->references('LoginID')->on('Login')->onDelete('cascade');
-            $table->string('BedrijfsNaam');
-            $table->string('TelefoonNummer');
-            $table->integer('Usertype');
+        Schema::create('users', function (Blueprint $table) {
+            $table->id();
+            $table->string("username");
+            $table->string("password");
+            $table->string('company');
+            $table->string('phone');
+            $table->integer('type');
             $table->timestamps();
         });
     }

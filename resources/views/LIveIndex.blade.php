@@ -45,7 +45,7 @@
                     <form method="POST" action="{{ route('loadEvent') }}" id="dropcontent" class="dropdown-content">
                         @csrf
                             @foreach ($evenementResult['evenementen'] as $event)
-                            <button type='submit' name='id' value="{{$event['id']}}">{{$event['EventNaam'] }}</button>
+                            <button type='submit' name='id' value="{{$event['id']}}">{{$event['event_name'] }}</button>
                             @endforeach
                     </form>
                 </div>
@@ -58,18 +58,17 @@
             <div class="actueelbezoek">
                 <h2>Actuele bezoekers</h2>
                 <?php
-                    $max = $evenementResult['gekozenEvenement']['MaxBezoekers'];
-                    $current = 13731;
+                    $max = $evenementResult['gekozenEvenement']['max_visitors'];  
 
-                    $currentAngle = ($current / $max) * 360;
+                    $currentAngle = ($evenementResult['current'] / $max) * 360;
                 ?>
                 <div class="CircularProgress"
                     style="background: conic-gradient(#E03076 {{ $currentAngle }}deg, #EEF1F6 0deg);">
                     <div class="ProgressValue">
-                        <div class="CurrentValue">Huidig: {{ $current }}</div>
+                        <div class="CurrentValue">Huidig: {{ $evenementResult['current'] }}</div>
                         <div class="MaxValue">
                             <p class="Max">Max:</p>
-                            <p class="MaxNumber">{{ $evenementResult['gekozenEvenement']['MaxBezoekers'] }}</p>
+                            <p class="MaxNumber">{{ $evenementResult['gekozenEvenement']['max_visitors'] }}</p>
                         </div>
                     </div>
                 </div>
@@ -80,21 +79,21 @@
             </div>
             <div class="instroom">
                 <h2>Instroom</h2>
-                <h1>{{ $evenementResult['eventData']['Instroom'] }}</h1>
+                <h1>{{ $evenementResult['in'] }}</h1>
             </div>
             <div class="uitstroom">
                 <h2>Uitstroom</h2>
-                <h1>{{ $evenementResult['eventData']['Uitstroom'] }}</h1>
+                <h1>{{ $evenementResult['out'] }}</h1>
             </div>
             <div class="trend">
                 <h2>Trend</h2>
-                @if($evenementResult['eventData']['Instroom'] > $evenementResult['eventData']['Uitstroom'])
+                @if($evenementResult['in'] > $evenementResult['out'])
                 <h3>Instromend</h3>
                 <img src='../images/trending-up.png'>
-                @elseif($evenementResult['eventData']['Uitstroom'] > $evenementResult['eventData']['Instroom'])
+                @elseif($evenementResult['out'] > $evenementResult['in'])
                 <h3>Uitstromend</h3>
                 <img src='../images/trending-down.png'>
-                @else($evenementResult['eventData']['Uitstroom'] == $evenementResult['eventData']['Instroom'])
+                @else($evenementResult['out'] == $evenementResult['in'])
                 <h3>Gelijk</h3>
                 <img src='../images/trending-same.png'>
                 @endif
@@ -159,8 +158,8 @@
             <div class="eventtotalpeoplecount">
                 <div class="eventinfo">
                     <h2>Herfstfestival</h2>
-                    <p>Instroom: <span class="bluespan">{{ $evenementResult['eventData']['Instroom'] }}</span></p>
-                    <p>Uitstroom: <span class="pinkspan">{{ $evenementResult['eventData']['Uitstroom'] }}</span></p>
+                    <p>Instroom: <span class="bluespan">{{ $evenementResult['in'] }}</span></p>
+                    <p>Uitstroom: <span class="pinkspan">{{ $evenementResult['out'] }}</span></p>
                 </div>
             </div>
             <div class="visitorcount">
@@ -168,7 +167,7 @@
                     <h2>Bezoekers</h2>
                     <p>Huidige aantal: <span class="bluespan">13731</span></p>
                     <p>Piek: <span class="bluespan">14331</span></p>
-                    <p>Maximale aantal: <span class="pinkspan" id="maxAmount">{{ $evenementResult['gekozenEvenement']['MaxBezoekers']
+                    <p>Maximale aantal: <span class="pinkspan" id="maxAmount">{{ $evenementResult['gekozenEvenement']['max_visitors']
                             }}</span></p>
 
                     <form id="amountForm" action="{{ url('/changeAmount') }}" method="GET">

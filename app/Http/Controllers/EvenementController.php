@@ -12,9 +12,20 @@ class EvenementController extends Controller
     public function index()
     {
         $selectedevent = Event::find(1)->toArray(); // bug: get first event a user may monitor
-        $eventdata = Cam::orderBy('Tijd', 'DESC')->first();
         $allevents = Event::all()->toArray();
-        $eventarray =  ["eventData" => $eventdata, "gekozenEvenement" => $selectedevent, "evenementen" => $allevents];
+        $eventinfo = Cam::get('*');
+        $totalInflow = 0;
+        $totalOutflow = 0;
+        
+        foreach($eventinfo as $info) {
+            $totalInflow += $info['inflow'];
+            $totalOutflow += $info['outflow'];
+        }
+        $total = $totalInflow - $totalOutflow;
+        
+        
+
+        $eventarray =  ["out"=> $totalOutflow ,"in"=> $totalInflow,"current" => $total, "gekozenEvenement" => $selectedevent, "evenementen" => $allevents];
         return $eventarray;
     }
     public function event()

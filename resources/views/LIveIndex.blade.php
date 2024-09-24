@@ -30,12 +30,8 @@
                     <button class="pagebtn" onclick="pageMenu()">
                         <img src="../images/mobile-icon.png" class="mobile">
                     </button>
-                    <div id="pagecontent" class="pagemenu-content">
-                        <a href="#account" class="account-item">Accounts</a>
-                        <a href="/events" class="event-item">Events</a>
-                    </div>
                     <a href="#account" class="account">Accounts</a>
-                    <a href="/events" class="event">Events</a>
+                    <a href="{{route('events.index')}}" class="event">Events</a>
                 </div>
                 <div class="dropmenu">
                     <button class="kiesevent" onclick="dropMenu()">
@@ -74,8 +70,11 @@
                 </div>
             </div>
             <div class="bezoek">
-                <h2>Bezoekeraantal:</h2>
-                <h1>14423</h1>
+                <h2>Maximale Instaplimiet:</h2>
+                @php
+                   $nowtotal = $evenementResult['gekozenEvenement']['max_visitors'] - $evenementResult['current'];
+                @endphp
+                <h1>{{$nowtotal}}</h1>
             </div>
             <div class="instroom">
                 <h2>Instroom</h2>
@@ -110,7 +109,7 @@
                         labels: labels,
                         datasets: [{
                             label: 'INSTROOM',
-                            data: [888, 420, 500, 150, 700, 873, 879, 423, 245, 999],
+                            data: [888, 420, 500, 150, 700, 673, 879, 423, 245, 999],
                             fill: false,
                             borderColor: 'rgb(4, 160, 181)',
                             tension: 0.1
@@ -165,7 +164,8 @@
             <div class="visitorcount">
                 <div class="changevisitorcount">
                     <h2>Bezoekers</h2>
-                    <p>Huidige aantal: <span class="bluespan">13731</span></p>
+                    <p>Huidige aantal: <span class="bluespan">{{$evenementResult['current']}}</span></p>
+                    <p>Totale Bezoekers: <span class="bluespan">{{$evenementResult['in']}}</span></p>
                     <p>Piek: <span class="bluespan">14331</span></p>
                     <p>Maximale aantal: <span class="pinkspan" id="maxAmount">{{ $evenementResult['gekozenEvenement']['max_visitors']
                             }}</span></p>

@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\evenementnow;
-use App\Models\Event;
-use Illuminate\Http\Request;
+use DateTime;
 use App\Models\Cam;
+use App\Models\Event;
+use App\Models\evenementnow;
+use Illuminate\Http\Request;
 
 class EvenementController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $selectedevent = Event::find(1)->toArray(); // bug: get first event a user may monitor
+        $selectedevent = Event::find($request->id)->toArray(); // bug: get first event a user may monitor
         $allevents = Event::all()->toArray();
-        $eventinfo = Cam::get('*');
+        if($request->id<1){
+            $id = 1;
+        }else{
+            $id = $request->id;
+        }
+        $eventinfo = Cam::where('event_id', $id)->get();
+        
         $totalInflow = 0;
         $totalOutflow = 0;
         
@@ -23,7 +30,7 @@ class EvenementController extends Controller
         }
         $total = $totalInflow - $totalOutflow;
         
-        
+
 
         $eventarray =  ["out"=> $totalOutflow ,"in"=> $totalInflow,"current" => $total, "gekozenEvenement" => $selectedevent, "evenementen" => $allevents];
         return $eventarray;
@@ -35,7 +42,6 @@ class EvenementController extends Controller
     }
     public function GetEventData(Request $request)
     {
-        $eventsnow = evenementnow::all();
         $events = EvenementController::index();
         $postData = $request->all();
         $event = Cam::where('EvenementID', $postData['id'])->first()->toArray();

@@ -9,12 +9,10 @@
 </head>
 
 <body>
+    <h2 class="events">Events List</h2> 
     <div class="parent">
-        <div class="header">
-            <!-- Header Content Here -->
-        </div>
         <div class="events-list">
-            <h2>Events List</h2>
+ 
 
             @forelse ($events as $event)
             <div class="event-item">
@@ -24,7 +22,7 @@
                 <p>Max Visitors: {{ $event->max_visitors }}</p>
                 <p>City: {{ $event->city }}</p>
 
-                <a href="{{ route('weather.index', ['id' => $event->id, 'city' => $event->city]) }}">View Weather</a>
+                <a class="event-info" href="{{ route('weather.index', ['id' => $event->id, 'city' => $event->city]) }}">View Event</a><br>
 
                 <form method="POST" action="{{ route('events.destroy', ['id' => $event->id]) }}">
                     @csrf
@@ -65,7 +63,7 @@
                 <input type="number" id="temperature" name="temperature" required>
 
                 <label for="weather_description">Weer Beschrijving:</label>
-                <input type="number" id="weather_description" name="weather_description" required>
+                <input type="text" id="weather_description" name="weather_description" required>
 
                 <label for="wheather">Weer:</label>
                 <input type="number" id="wheather" name="weather" required>

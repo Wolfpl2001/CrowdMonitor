@@ -21,18 +21,27 @@ body {
     width: 30%;
 }
 
+.events{
+margin-left: 20%;
+}
+
 .events-list {
-    width: 60%;
+    width: 100%;
     padding: 20px;
     box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
 .event-item {
     border: 1px solid #ccc;
     padding: 10px;
-    margin-bottom: 10px;
     background-color: #fff;
+    box-sizing: border-box;
+    height: 37%;
 }
+
 
 .event-item a {
     display: block;
@@ -49,9 +58,24 @@ body {
     cursor: pointer;
 }
 
+
+.event-info{
+    background-color: white;
+    border: 1px #04A0B5 solid;
+    padding: 3px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.event-info:hover{
+    background-color: #04A0B5;
+    color: white;
+}
+
 .events-container {
-    width: 30%;
+    width: 50%;
     padding: 20px;
+    margin-left: 10%;
     box-sizing: border-box;
     background-color: #fff;
 }

@@ -143,7 +143,15 @@
             <div class="realTimeClock">
                 <p id="currentTime" class="clock"></p>
             </div>
+            
+            <div class="break">
+                <div class="weatherblock">
+                <h2>Event Naam:</h2>
+                <p><strong>{{ $evenementResult['gekozenEvenement']['event_name'] }}</strong></p>
+            </div>
+            </div>
             <div class="weatherblock">
+                <h2>Weer:</h2>
                 @if (!empty($weatherResult['temperatureCelsius']))
                     <p>Temperature: {{ $weatherResult['temperatureCelsius'] }} °C</p>
                     <p>Description: {{$weatherResult['weatherDescription'] }}</p>
@@ -151,19 +159,9 @@
                     <p>Invalid event or city</p>
                 @endif
             </div>
-            <div class="break">
-                <h2>Informatie</h2>
-            </div>
-            <div class="eventtotalpeoplecount">
-                <div class="eventinfo">
-                    <h2>Herfstfestival</h2>
-                    <p>Instroom: <span class="bluespan">{{ $evenementResult['in'] }}</span></p>
-                    <p>Uitstroom: <span class="pinkspan">{{ $evenementResult['out'] }}</span></p>
-                </div>
-            </div>
             <div class="visitorcount">
                 <div class="changevisitorcount">
-                    <h2>Bezoekers</h2>
+                    <h2>Bezoekers:</h2>
                     <p>Huidige aantal: <span class="bluespan">{{$evenementResult['current']}}</span></p>
                     <p>Totale Bezoekers: <span class="bluespan">{{$evenementResult['in']}}</span></p>
                     <p>Piek: <span class="bluespan">14331</span></p>

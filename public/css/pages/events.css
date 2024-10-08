@@ -44,10 +44,12 @@ margin-left: 20%;
 
 
 .event-item a {
+    background-color: #04A0B5;
+    color: #fff;
     display: block;
-    margin-top: 10px;
+    font-size: 15px;
+    border-radius: 9px;
     text-decoration: none;
-    color: #007bff;
 }
 
 .btn-danger {
@@ -55,22 +57,18 @@ margin-left: 20%;
     color: #fff;
     border: none;
     padding: 5px 10px;
+    border-radius: 9px;
     cursor: pointer;
 }
 
 
 .event-info{
-    background-color: white;
     border: 1px #04A0B5 solid;
     padding: 3px;
     cursor: pointer;
     text-align: center;
 }
 
-.event-info:hover{
-    background-color: #04A0B5;
-    color: white;
-}
 
 .events-container {
     width: 50%;
@@ -100,4 +98,5 @@ button {
     color: #fff;
     border: none;
     cursor: pointer;
+    border-radius: 9px;
 }

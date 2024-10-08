@@ -114,7 +114,7 @@ a.event:hover {
 
 .dropdown-content button {
     color: black;
-    padding: 12px 16px;
+    padding: 8px;
     text-decoration: none;
     font-size: 18px;
     display: grid;
@@ -210,7 +210,7 @@ a.event:hover {
     }
 
     .pagemenu {
-        width: 85%;
+        width: 50%;
         grid-template-columns: repeat(1, 1fr);
         justify-items: center;
         background: #FFFFFF;

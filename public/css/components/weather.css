@@ -42,6 +42,9 @@
     border: none;
     cursor: pointer;
 }
+.wijzigenbutton:hover{
+    background-color: blue;
+}
 #currentTime {
     margin: 0;
     font-weight: 600;

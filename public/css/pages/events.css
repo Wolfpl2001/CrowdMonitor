@@ -52,6 +52,10 @@ margin-left: 20%;
     text-decoration: none;
 }
 
+.event-item a:hover{
+    background-color: blue;
+}
+
 .btn-danger {
     background-color: #04A0B5;
     color: #fff;
@@ -60,7 +64,9 @@ margin-left: 20%;
     border-radius: 9px;
     cursor: pointer;
 }
-
+.btn-danger:hover{
+    background-color: red;
+}
 
 .event-info{
     border: 1px #04A0B5 solid;
@@ -99,4 +105,8 @@ button {
     border: none;
     cursor: pointer;
     border-radius: 9px;
+}
+
+button:hover{
+    background-color: blue;
 }

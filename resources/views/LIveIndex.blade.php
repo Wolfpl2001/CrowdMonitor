@@ -54,7 +54,7 @@
             <div class="actueelbezoek">
                 <h2>Actuele bezoekers</h2>
                 <?php
-                    $max = $evenementResult['gekozenEvenement']['max_visitors'];  
+                    $max = $evenementResult['gekozenEvenement']['max_visitors'];
 
                     $currentAngle = ($evenementResult['current'] / $max) * 360;
                 ?>
@@ -103,37 +103,51 @@
                 <div id="graph-container">
                     <canvas id="myLineChart" width="700" height="200"></canvas>
                 </div>
+                @php
+                    $labels = $evenementResult['labels'];
+                    $inTime = $evenementResult['arreyinflow'];
+                    $outTime =  $evenementResult['arreyoutflow'];
+                @endphp
                 <script>
-                    const labels = ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00'];
+                    const labels = @json($labels); // Przesłanie etykiet z PHP do JS
+                    const inflowData = @json($inTime);
+                    const outflowData = @json($outTime);
+                    const tension = 0.1;
+
+                    console.log("Labels:", labels);
+                    console.log("Inflow Data:", inflowData);
+                    console.log("Outflow Data:", outflowData);
+
                     const data = {
                         labels: labels,
                         datasets: [{
                             label: 'INSTROOM',
-                            data: [888, 420, 500, 150, 700, 673, 879, 423, 245, 999],
+                            data: inflowData,
                             fill: false,
                             borderColor: 'rgb(4, 160, 181)',
-                            tension: 0.1
+                            tension: tension
                         },
-                        {
-                            label: 'UITSTROOM',
-                            data: [43, 650, 520, 800, 421, 240, 372, 344, 131, 982],
-                            fill: false,
-                            borderColor: 'rgb(224, 48, 118)',
-                            tension: 0.1
-                        }
-                        ]
+                            {
+                                label: 'UITSTROOM',
+                                data: outflowData,
+                                fill: false,
+                                borderColor: 'rgb(224, 48, 118)',
+                                tension: tension
+                            }]
                     };
+
                     const config = {
                         type: 'line',
                         data: data,
                         options: {
                             scales: {
                                 y: {
-                                    beginAtZero: true
+                                    beginAtZero: false
                                 }
                             }
                         }
                     };
+
                     const ctx = document.getElementById('myLineChart').getContext('2d');
                     const myChart = new Chart(ctx, config);
                 </script>
@@ -143,7 +157,7 @@
             <div class="realTimeClock">
                 <p id="currentTime" class="clock"></p>
             </div>
-            
+
             <div class="break">
                 <div class="weatherblock">
                 <h2>Event Naam:</h2>

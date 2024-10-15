@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use DateTime;
+use DatePeriod;
+use DateInterval;
 use App\Models\Cam;
 use App\Models\Event;
 use App\Models\evenementnow;
@@ -12,29 +14,66 @@ class EvenementController extends Controller
 {
     public function index(Request $request)
     {
-        $selectedevent = Event::find($request->id)->toArray(); // bug: get first event a user may monitor
+        $selectedevent = Event::find($request->id)->toArray();
         $allevents = Event::all()->toArray();
-        if($request->id<1){
-            $id = 1;
-        }else{
-            $id = $request->id;
-        }
+    
+        $id = ($request->id < 1) ? 1 : $request->id;
         $eventinfo = Cam::where('event_id', $id)->get();
-        
+    
+        $inflowData = [];
+        $outflowData = [];
         $totalInflow = 0;
         $totalOutflow = 0;
-        
+    
         foreach($eventinfo as $info) {
+            $time = $info['created_at']->format('Y-m-d H:i');
+            if (!isset($inflowData[$time])) {
+                $inflowData[$time] = 0; // Initialize if not set
+            }
+            if (!isset($outflowData[$time])) {
+                $outflowData[$time] = 0; // Initialize if not set
+            }
+    
+            // Sum inflow and outflow for each time slot
+            $inflowData[$time] += $info['inflow'];
+            $outflowData[$time] += $info['outflow'];
+    
             $totalInflow += $info['inflow'];
             $totalOutflow += $info['outflow'];
         }
+    
         $total = $totalInflow - $totalOutflow;
-        
-
-
-        $eventarray =  ["out"=> $totalOutflow ,"in"=> $totalInflow,"current" => $total, "gekozenEvenement" => $selectedevent, "evenementen" => $allevents];
+    
+        // Merge inflow and outflow timestamps
+        $allTimes = array_unique(array_merge(array_keys($inflowData), array_keys($outflowData)));
+        sort($allTimes); // Sort timestamps
+    
+        $labels = [];
+        $arreyinflow = [];
+        $arreyoutflow = [];
+    
+        foreach ($allTimes as $time) {
+            $labels[] = $time;
+            $arreyinflow[] = $inflowData[$time] ?? 0; // Set to 0 if no inflow for this time
+            $arreyoutflow[] = $outflowData[$time] ?? 0; // Set to 0 if no outflow for this time
+        }
+    
+        $eventarray = [
+            "arreyoutflow" => $arreyoutflow,
+            "arreyinflow" => $arreyinflow,
+            "labels" => $labels,
+            "out" => $totalOutflow,
+            "in" => $totalInflow,
+            "current" => $total,
+            "gekozenEvenement" => $selectedevent,
+            "evenementen" => $allevents
+        ];
+    
         return $eventarray;
     }
+    
+
+    
     public function event()
     {
         $events = Event::all();
@@ -58,12 +97,12 @@ class EvenementController extends Controller
         $event = Event::create([
             'max_visitors' => $data['max_visitors'],
             'start' => $data['start'],
-            'end' => $data['end'],      
+            'end' => $data['end'],
             'street' => "",
             'house_number' => 1,
             'postal_code' => "",
             'country_code' => "NL",
-            'user_id' => 1,      
+            'user_id' => 1,
             'event_name' => $data['event_name'],
             'city' => $data['city'],
             'user_id' => '1',
